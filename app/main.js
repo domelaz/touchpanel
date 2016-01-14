@@ -27,6 +27,8 @@ app.on('ready', function() {
 
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/index.html');
+  // What we have?
+  //mainWindow.loadURL('https://kangax.github.io/compat-table/es6/');
 
   // Open the DevTools.
   if (process.env.NORD_DEBUG) {
