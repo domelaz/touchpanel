@@ -1,0 +1,9 @@
+{
+  "name": "nord-interactive",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": { },
+  "author": "anton@domelaz.ru",
+  "license": "MIT"
+}
