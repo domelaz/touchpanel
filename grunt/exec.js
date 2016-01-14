@@ -9,7 +9,7 @@ let build = [
   '--version', '0.36.3',
   '--asar',
   '--overwrite',
-  '--out', '/tmp/nord-interactive',
+  //'--out', '/tmp/nord-interactive',
   //'--icon=./app/images/ni.png'
 ];
 
