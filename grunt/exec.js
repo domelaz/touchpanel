@@ -4,8 +4,8 @@ let build = [
   'node_modules/.bin/electron-packager', // Packager executable
   'app/', // Source dir
   'Nord-Interactive', // App name
-  '--platform=linux',
-  '--arch=ia32',
+  '--platform=' + process.platform,
+  '--arch=' + process.arch,
   '--version', '0.36.3',
   '--asar',
   '--overwrite',
