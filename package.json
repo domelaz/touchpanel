@@ -4,7 +4,8 @@
   "description": "",
   "main": "app/main.js",
   "scripts": {
-    "start": "node_modules/electron-prebuilt/dist/electron app/main.js"
+    "start": "node_modules/electron-prebuilt/dist/electron app/main.js",
+    "postinstall": "grunt"
   },
   "author": "anton@domelaz.ru",
   "license": "MIT",

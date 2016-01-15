@@ -12,4 +12,6 @@ module.exports = function(grunt) {
       dist: 'app'
     }
   });
+
+  grunt.registerTask('default', ['jade', 'less']);
 };
