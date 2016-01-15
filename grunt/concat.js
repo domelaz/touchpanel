@@ -1,6 +1,7 @@
 'use strict';
 
 let sources = [
+  'node_modules/jquery/dist/jquery.js',
   'src/**/*.js', 
 ];
 
