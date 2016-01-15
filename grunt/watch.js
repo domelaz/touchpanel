@@ -13,6 +13,10 @@ module.exports = {
     files: ['less/**/*.less'],
     tasks: ['less']
   },
+  jade: {
+    files: ['jade/**/*.*'],
+    tasks: ['jade']
+  },
   live: {
     options: {
       livereload: true,

@@ -3,3 +3,4 @@ node_modules/
 
 # Grunt generated content
 app/css/
+app/index.html
