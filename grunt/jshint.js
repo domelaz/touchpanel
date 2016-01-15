@@ -8,7 +8,11 @@ module.exports = {
     src: ['Gruntfile.js', 'grunt/**/*.js']
   },
   app: {
-    src: ['app/**/*.js']
+    src: [
+      '<%= dist %>/**/*.js',
+      'src/**/*.js',
+      '!<%= concat.app.dest %>'
+    ]
   },
   test: {
     src: ['test/**/*.js']
