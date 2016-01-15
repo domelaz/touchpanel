@@ -1,5 +1,10 @@
-(function($) {
+(function() {
   'use strict';
+
+  if (typeof module === "object" && typeof module.exports === "function") {
+    // Мы в электроне
+    window.$ = require('jquery');
+  }
 
   let eventClick = 'click';
   let slide = $('<img class="slide" src="img/00-02.png">');
@@ -26,4 +31,4 @@
       .on(eventClick, ".thumbnail", showSlide);
   });
 
-})(jQuery);
+})();
