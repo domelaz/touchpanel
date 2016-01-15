@@ -17,6 +17,10 @@ module.exports = {
     files: ['jade/**/*.*'],
     tasks: ['jade']
   },
+  client: {
+    files: '<%= concat.app.src %>',
+    tasks: ['concat']
+  },
   live: {
     options: {
       livereload: true,
