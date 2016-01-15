@@ -8,3 +8,36 @@
   background-size: contain;
   height: 100%;
 }
+
+.thumbnails-feed {
+  display: flex;
+  padding: @thm-padding;
+  position: relative;
+  height: @thm-height;
+  bottom: @thm-height + @thm-shift;
+  background-color: @thm-fill;
+}
+
+.thumbnails-set {
+  display: flex;
+  overflow: hidden;
+}
+
+.thumbnails-nav {
+  width: @thm-nav-width;
+  min-width: @thm-nav-min-width;
+  background: url(../img/arrow.png) center no-repeat;
+  height: @thm-height;
+  z-index: 1500;
+}
+
+.thumbnails-nav--right {
+  transform: rotate(180deg);
+}
+
+.thumbnail {
+  margin: 0 @tum-h-margins;
+  width: @tum-width;
+  box-shadow: 0 0 @tum-shadow-blur rgba(0, 0, 0, 0.5);
+  border-radius: @tum-radius;
+}
