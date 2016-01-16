@@ -8,6 +8,10 @@
     "postinstall": "grunt"
   },
   "author": "anton@domelaz.ru",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/domelaz/touchpanel.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "electron-packager": "^5.2.0",
