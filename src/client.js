@@ -7,7 +7,7 @@
   }
 
   let eventClick = 'click';
-  let slide = $('<img class="slide" src="img/00-02.png">');
+  let slide = $('<img class="slide">');
 
   function selectSlide() {
     let slideThumbnail = $(this);
@@ -20,8 +20,16 @@
     if ($('.slide').length === 0) {
       $('.content').append(slide);
     }
-    slide.attr({
-      src: $(this).attr('src')
+    let newSrc = $(this).attr('src');
+    slide.animate({
+      opacity: 0
+    }, 200, function() {
+      slide.attr({
+        src: newSrc
+      });
+      slide.animate({
+        opacity: 1
+      }, 200);
     });
   }
 
