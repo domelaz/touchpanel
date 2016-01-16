@@ -16,4 +16,5 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['jade', 'less', 'concat']);
+  grunt.registerTask('build', ['default', 'exec:build']);
 };

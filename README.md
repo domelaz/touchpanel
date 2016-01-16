@@ -24,5 +24,5 @@ npm start
 Сборка бинарника  
 
 ```
-grunt exec:build
+grunt build
 ```
