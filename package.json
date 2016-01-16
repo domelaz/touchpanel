@@ -4,7 +4,7 @@
   "description": "",
   "main": "app/main.js",
   "scripts": {
-    "start": "node_modules/electron-prebuilt/dist/electron app/main.js",
+    "start": "grunt exec:npmStart",
     "postinstall": "grunt"
   },
   "author": "anton@domelaz.ru",

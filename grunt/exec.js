@@ -30,7 +30,7 @@ function getExecutable(here, name, ext) {
   return execFull;
 }
 
-let build = [
+let cmdBuild = [
   getExecutable('node_modules/.bin', 'electron-packager', 'cmd'),
   '<%= dist %>',  // Source dir
   '<%= brand %>', // App name
@@ -43,8 +43,17 @@ let build = [
   //'--icon=./app/images/ni.png'
 ];
 
+let cmdNpmStart = [
+  getExecutable('node_modules/electron-prebuilt/dist', 'electron', 'exe'),
+  '<%= pkg.main %>'
+];
+
+// @todo fast, but WEIRD
 module.exports = {
   build: {
-    command: build.join(' ')
+    command: cmdBuild.join(' ')
+  },
+  npmStart: {
+    command: cmdNpmStart.join(' ')
   }
 };
