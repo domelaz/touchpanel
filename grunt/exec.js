@@ -32,11 +32,11 @@ function getExecutable(here, name, ext) {
 
 let build = [
   getExecutable('node_modules/.bin', 'electron-packager', 'cmd'),
-  'app/', // Source dir
-  'Nord-Interactive', // App name
+  '<%= dist %>',  // Source dir
+  '<%= brand %>', // App name
   '--platform=' + process.platform,
   '--arch=' + process.arch,
-  '--version', '0.36.3',
+  '--version', process.env.NORD_ELVER || '<%= elver %>',
   '--asar',
   '--overwrite',
   //'--out', '/tmp/nord-interactive',

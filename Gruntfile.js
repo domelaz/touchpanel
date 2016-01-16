@@ -9,7 +9,9 @@ module.exports = function(grunt) {
   require('load-grunt-config')(grunt, {
     data: {
       pkg: grunt.file.readJSON('package.json'),
-      dist: 'app'
+      dist: 'app',
+      elver: '0.36.3', // Current electron version, may altered by NORD_ELVER env
+      brand: 'Nord-Interactive' // Brand app name, like package.json `name`
     }
   });
 
