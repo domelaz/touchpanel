@@ -9,9 +9,8 @@ module.exports = {
   },
   app: {
     src: [
-      '<%= dist %>/**/*.js',
-      'src/**/*.js',
-      '!<%= concat.app.dest %>'
+      '<%= pkg.main %>',
+      'src/**/*.js'
     ]
   },
   test: {
