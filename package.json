@@ -23,9 +23,12 @@
     "grunt-contrib-less": "^1.1.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-exec": "^0.4.6",
+    "grunt-webpack": "^1.0.11",
     "jquery": "^2.2.0",
     "load-grunt-config": "^0.19.1",
-    "normalize.css": "^3.0.3"
+    "normalize.css": "^3.0.3",
+    "webpack": "^1.12.11",
+    "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
     "electron-prebuilt": "^0.36.3"
