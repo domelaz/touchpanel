@@ -18,8 +18,8 @@ module.exports = {
     tasks: ['jade']
   },
   client: {
-    files: '<%= concat.app.src %>',
-    tasks: ['concat']
+    files: 'src/**/*.js',
+    tasks: ['webpack:dev']
   },
   live: {
     options: {
