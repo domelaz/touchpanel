@@ -15,6 +15,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['jade', 'less', 'concat', 'copy']);
+  grunt.registerTask('default', ['jade', 'less']);
   grunt.registerTask('build', ['default', 'exec:build']);
 };
