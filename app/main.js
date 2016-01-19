@@ -26,7 +26,12 @@ app.on('ready', function() {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/index.html');
+  if (process.env.NORD_DEBUG) {
+    mainWindow.loadURL('http://localhost:8080/index.html');
+  } else {
+    mainWindow.loadURL('file://' + __dirname + '/index.html');
+  }
+
   // What we have?
   //mainWindow.loadURL('https://kangax.github.io/compat-table/es6/');
 

@@ -17,17 +17,13 @@ module.exports = {
     files: ['jade/**/*.*'],
     tasks: ['jade']
   },
-  client: {
-    files: 'src/**/*.js',
-    tasks: ['webpack:dev']
-  },
   live: {
+    files: [
+      '<%= dist %>/css/styles.css',
+      '<%= dist %>/index.html',
+    ],
     options: {
       livereload: true,
     },
-    files: [
-      '<%= dist %>/**/*.*',
-    ],
-    tasks: []
-  }
+  },
 };

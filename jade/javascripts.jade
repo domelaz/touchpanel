@@ -1,6 +1,7 @@
-//- Общий код для всех
-script(src="js/scripts.js")
-
-//- Grunt live reload
 if process.env.NORD_DEBUG
+  //- Grunt live reload
   script(src="//localhost:35729/livereload.js")
+  //- Webpack live reload
+  script(src="//localhost:8080/js/scripts.js")
+else
+  script(src="js/scripts.js")
