@@ -1,12 +1,13 @@
 'use strict';
 
 module.exports = {
+  options: {
+    compress: process.env.NORD_DEBUG ? false : true,
+    paths: ['less']
+  },
   app: {
-    options: {
-      compress: process.env.NORD_DEBUG ? false : true
-    },
     files: {
-      'app/css/styles.css': 'less/<%= pkg.name %>.less'
+      '<%= dist %>/css/styles.css': [ 'less/<%= pkg.name %>.less', 'src/**/*.less' ]
     }
   }
 };

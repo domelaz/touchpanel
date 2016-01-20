@@ -1,0 +1,32 @@
+@import 'variables.less';
+
+.thumbnails-feed {
+  display: flex;
+  justify-content: space-between;
+  padding: @thm-padding;
+  position: relative;
+  height: @thm-height;
+  bottom: @thm-height + @thm-shift;
+  background-color: @thm-fill;
+  z-index: 1000;
+}
+
+.thumbnails-set {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.thumbnails-nav {
+  cursor: pointer;
+  width: @thm-nav-width;
+  min-width: @thm-nav-min-width;
+  background: url(../img/arrow.png) center no-repeat;
+  height: @thm-height;
+  z-index: 1500;
+}
+
+.thumbnails-nav--right {
+  transform: rotate(180deg);
+}
+

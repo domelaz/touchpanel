@@ -1,0 +1,15 @@
+@import 'variables.less';
+
+.thumbnail {
+  cursor: pointer;
+  margin: 0 @tum-h-margins;
+  height: 11vh;
+  box-shadow: 0 0 @tum-shadow-blur rgba(0, 0, 0, 0.5);
+  border-radius: @tum-radius;
+}
+
+.thumbnail--active {
+  box-shadow: 0 0 @tum-shadow-blur * 3 rgba(255, 255, 0, 0.75);
+  height: 13vh;
+}
+
