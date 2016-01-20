@@ -4,16 +4,26 @@
   "description": "",
   "main": "app/main.js",
   "scripts": {
-    "start": "node_modules/electron-prebuilt/dist/electron app/main.js"
+    "start": "grunt exec:npmStart",
+    "postinstall": "grunt"
   },
   "author": "anton@domelaz.ru",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/domelaz/touchpanel.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "electron-packager": "^5.2.0",
     "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.2",
+    "grunt-contrib-jade": "^0.15.0",
     "grunt-contrib-jshint": "^0.11.3",
     "grunt-contrib-less": "^1.1.0",
+    "grunt-contrib-watch": "^0.6.1",
     "grunt-exec": "^0.4.6",
+    "jquery": "^2.2.0",
     "load-grunt-config": "^0.19.1",
     "normalize.css": "^3.0.3"
   },
