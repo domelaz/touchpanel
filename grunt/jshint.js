@@ -8,7 +8,10 @@ module.exports = {
     src: ['Gruntfile.js', 'grunt/**/*.js']
   },
   app: {
-    src: ['app/**/*.js']
+    src: [
+      '<%= pkg.main %>',
+      'src/**/*.js'
+    ]
   },
   test: {
     src: ['test/**/*.js']
