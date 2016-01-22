@@ -1,31 +1,10 @@
 'use strict';
 
-const path = require('path');
+const options = require('./webpack.commons.js');
 
 module.exports = {
   options: {
-    webpack: {
-      entry: [
-        path.join(__dirname, '../src/app.tsx')
-      ],
-      devtool: 'sourcemap',
-      output: {
-        filename: 'scripts.js',
-        pathinfo: true,
-      },
-      plugins: [],
-      module: {
-        loaders: [{
-          test: /\.tsx?$/,
-          loader: 'webpack-typescript',
-          include: path.join(__dirname, '../src/'),
-          query: {
-            target: 'ES5',
-            jsx: 'react',
-          }
-        }]
-      }
-    },
+    webpack: options, 
     host: 'localhost',
     hot: true,
     inline: true,
