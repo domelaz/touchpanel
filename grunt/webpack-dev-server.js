@@ -6,7 +6,7 @@ module.exports = {
   options: {
     webpack: {
       entry: [
-        path.join(__dirname, '../src/client')
+        path.join(__dirname, '../src/app.tsx')
       ],
       devtool: 'sourcemap',
       output: {
@@ -14,6 +14,17 @@ module.exports = {
         pathinfo: true,
       },
       plugins: [],
+      module: {
+        loaders: [{
+          test: /\.tsx?$/,
+          loader: 'webpack-typescript',
+          include: path.join(__dirname, '../src/'),
+          query: {
+            target: 'ES5',
+            jsx: 'react',
+          }
+        }]
+      }
     },
     host: 'localhost',
     hot: true,

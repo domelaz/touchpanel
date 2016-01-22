@@ -10,8 +10,22 @@ module.exports = {
       filename: 'scripts.js'
     },
     entry: [
-      path.join(__dirname, '../src/client'),
-    ]
+      path.join(__dirname, '../src/app.tsx'),
+    ],
+    resolve: {
+      extensions: ['', '.js', '.ts', '.tsx']
+    },
+    module: {
+      loaders: [{
+        test: /\.tsx?$/,
+        loader: 'webpack-typescript',
+        include: path.join(__dirname, '../src/'),
+        query: {
+          target: 'ES5',
+          jsx: 'react',
+        }
+      }]
+    }
   },
   dev: {
     debug: true,
