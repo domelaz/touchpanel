@@ -3,5 +3,8 @@ node_modules/
 
 # Grunt generated content
 app/css/
-app/js/scripts.js
+app/js/
 app/index.html
+
+# tsc output by default
+built/

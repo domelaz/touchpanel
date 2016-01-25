@@ -12,6 +12,9 @@ module.exports = {
     pathinfo: true,
   },
   resolve: {
+    root: [
+      path.join(__dirname, '../src/')
+    ],
     extensions: ['', '.js', '.ts', '.tsx']
   },
   plugins: [],
@@ -21,6 +24,7 @@ module.exports = {
       loader: 'webpack-typescript',
       include: path.join(__dirname, '../src/'),
       query: {
+        module: 'commonjs',
         target: 'ES5',
         jsx: 'react',
       }
