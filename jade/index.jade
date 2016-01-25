@@ -1,12 +1,13 @@
 extends layout.jade
 
 block content 
-  .app-container
-    .scene-background
-    .thumbnails-feed
-      .thumbnails-nav
-      .thumbnails-set
-        each thumbnail in locals.thumbnails
-          img.thumbnail(src="img/00-0" + thumbnail + ".png")
-      .thumbnails-nav.thumbnails-nav--right
-    .content
+  #react-root
+    .app-container
+      .scene-background
+      .thumbnails-feed
+        .thumbnails-nav
+        .thumbnails-set
+          each thumbnail in locals.thumbnails
+            img.thumbnail(src="img/00-0" + thumbnail + ".png")
+        .thumbnails-nav.thumbnails-nav--right
+      .content
