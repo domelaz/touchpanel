@@ -1,8 +1,24 @@
+///<reference path="refs.d.ts" />
+
 'use strict';
 
-/// <reference path='jquery.d.ts' />
-
 import * as $ from 'jquery';
+
+import * as React from 'react';
+import { render } from 'react-dom';
+
+import SceneBackground from './components/scene-background';
+import ThumbnailsFeed from './components/thumbnails-feed';
+import Content from './components/content';
+
+render(
+  <div className="app-container">
+    <SceneBackground />
+    <ThumbnailsFeed />
+    <Content />
+  </div>,
+  document.getElementById('react-root')
+);
 
 let eventClick = 'click';
 let slide = $('<img class="slide">');
