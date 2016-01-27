@@ -16,7 +16,7 @@ class App extends React.Component<{}, {}> {
     return (
       <div className="app-container">
         <SceneBackground />
-        <ThumbnailsFeed />
+        <ThumbnailsFeed thumbnails={[2,3,4,5,6,7]} />
         <Content />
       </div>
     );

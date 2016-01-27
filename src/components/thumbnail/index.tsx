@@ -5,6 +5,7 @@
 import * as React from 'react';
 
 interface IThumbProp {
+  key: number,
   src: string,
   cls?: string
 }
