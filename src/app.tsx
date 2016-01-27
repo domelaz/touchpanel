@@ -6,18 +6,26 @@ import * as $ from 'jquery';
 
 import * as React from 'react';
 import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
 import SceneBackground from './components/scene-background';
 import ThumbnailsFeed from './components/thumbnails-feed';
 import Content from './components/content';
+import app from './reducers';
+
+let appRoot = document.getElementById('react-root');
+let store = createStore(app);
 
 render(
-  <div className="app-container">
-    <SceneBackground />
-    <ThumbnailsFeed />
-    <Content />
-  </div>,
-  document.getElementById('react-root')
+  <Provider store={store}>
+    <div className="app-container">
+      <SceneBackground />
+      <ThumbnailsFeed />
+      <Content />
+    </div>
+  </Provider>,
+  appRoot
 );
 
 let eventClick = 'click';
