@@ -17,14 +17,22 @@ module.exports = {
     ]
   },
   build: {
+    output: {
+      pathinfo: false
+    },
     plugins: [
       new webpack.DefinePlugin({
-        'process-env': {
+        'process.env': {
           'NODE_ENV': JSON.stringify('production')
         }
       }),
       new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin()
+      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.optimize.UglifyJsPlugin({
+        'screw-ie8': true,
+        compress: true,
+        sourceMap: false
+      })
     ]
   }
 };
