@@ -4,6 +4,7 @@
 
 import * as React from 'react';
 import Thumbnail from '../thumbnail';
+import Navigate from '../navigate';
 
 interface IFeedProps {
   thumbnails: number[],
@@ -27,7 +28,7 @@ export default class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
 
     return (
       <div className="thumbnails-feed">
-        <div className="thumbnails-nav"></div>
+        <Navigate />
         <div className="thumbnails-set">{thmSet}</div>
         <div className="thumbnails-nav thumbnails-nav--right"></div>
       </div>
