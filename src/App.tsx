@@ -29,7 +29,7 @@ class App extends React.Component<IApp, {}> {
           thumbnails = {[2,3,4,5,6,7]}
           active = {this.props.active}
         />
-        <Content />
+        <Content active = {this.props.active} />
       </div>
     );
   }

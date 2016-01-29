@@ -13,6 +13,7 @@ interface IFeedProps {
   onThumbnailClick(number): void
 }
 
+/**
 let eventClick = 'click';
 let slide = $('<img class="slide">');
 
@@ -31,16 +32,16 @@ function showSlide() {
       opacity: 1
     }, 200);
   });
-}
+}*/
 
 export default class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
-  componentDidMount() {
+/**  componentDidMount() {
     $('.thumbnails-set')
       .on(eventClick, ".thumbnail", showSlide);
   }
   componentWillUnmount() {
     $('.thumbnails-set').off();
-  }
+  }*/
 
   render() {
     const { thumbnails, active } = this.props;
