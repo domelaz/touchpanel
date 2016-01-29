@@ -11,9 +11,15 @@ interface IThumbProp {
 }
 
 export default class Thumbnail extends React.Component<IThumbProp, {}> {
+  defaultClass = 'thumbnail';
+
+  getCSSClassString() {
+    return this.props.cls ? `${this.defaultClass} ${this.props.cls}` : this.defaultClass;
+  }
+
   render() {
     return (
-      <img className={this.props.cls || 'thumbnail'} src={this.props.src} />
+      <img className={this.getCSSClassString()} src={this.props.src} />
     );
   }
 }

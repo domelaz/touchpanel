@@ -49,14 +49,18 @@ export default class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
     $('.thumbnails-set').off();
   }
   render() {
+    let thumbnails = this.props.thumbnails.map(index => 
+      <Thumbnail
+        key={index}
+        src={`img/00-0${index}.png`}
+        cls={this.props.active === index ? 'thumbnail--active' : undefined}
+      />
+    );
+
     return (
       <div className="thumbnails-feed">
         <div className="thumbnails-nav"></div>
-        <div className="thumbnails-set">
-          {this.props.thumbnails.map(index =>
-            <Thumbnail key={index} src={`img/00-0${index}.png`} />
-          )}
-        </div>
+        <div className="thumbnails-set">{thumbnails}</div>
         <div className="thumbnails-nav thumbnails-nav--right"></div>
       </div>
     );
