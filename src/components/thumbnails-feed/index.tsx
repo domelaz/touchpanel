@@ -8,7 +8,8 @@ import * as React from 'react';
 import Thumbnail from '../thumbnail';
 
 interface IFeedProps {
-  thumbnails: number[]
+  thumbnails: number[],
+  active: number
 }
 
 let eventClick = 'click';
