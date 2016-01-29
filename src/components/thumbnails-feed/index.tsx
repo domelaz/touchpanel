@@ -9,7 +9,8 @@ import Navigate from '../navigate';
 interface IFeedProps {
   thumbnails: number[],
   active: number,
-  onThumbnailClick(number): void
+  onThumbnailClick(number): void,
+  onNavClick(any): void
 }
 
 export default class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
@@ -28,9 +29,9 @@ export default class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
 
     return (
       <div className="thumbnails-feed">
-        <Navigate />
+        <Navigate dir="back" onNavClick={this.props.onNavClick} />
         <div className="thumbnails-set">{thmSet}</div>
-        <div className="thumbnails-nav thumbnails-nav--right"></div>
+        <Navigate dir="forth" onNavClick={this.props.onNavClick} />
       </div>
     );
   }

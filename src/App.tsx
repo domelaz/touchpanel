@@ -26,6 +26,7 @@ class App extends React.Component<IApp, {}> {
         <SceneBackground />
         <ThumbnailsFeed
           onThumbnailClick = {actions.thumbClick}
+          onNavClick = {actions.navClick}
           thumbnails = {[2,3,4,5,6,7]}
           active = {this.props.active}
         />

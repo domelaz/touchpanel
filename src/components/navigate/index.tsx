@@ -4,10 +4,21 @@
 
 import * as React from 'react';
 
-export default class Navigate extends React.Component<{}, {}> {
+interface INavProps {
+  dir: string,
+  onNavClick?(any): void
+}
+
+export default class Navigate extends React.Component<INavProps, {}> {
   render() {
     return (
-      <div className="thumbnails-nav"></div>
+      <div className={(() => {
+        switch(this.props.dir) {
+          case "back":  return "thumbnails-nav";
+          case "forth": return "thumbnails-nav thumbnails-nav--right";
+        }
+      })()}
+      onClick={() => this.props.onNavClick(this.props.dir)}></div>
     );
   }
 }
