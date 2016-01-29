@@ -6,8 +6,10 @@ import * as React from 'react';
 
 interface IThumbProp {
   key: number,
+  id: number,
   src: string,
-  cls?: string
+  cls?: string,
+  onThumbnailClick
 }
 
 export default class Thumbnail extends React.Component<IThumbProp, {}> {
@@ -19,7 +21,9 @@ export default class Thumbnail extends React.Component<IThumbProp, {}> {
 
   render() {
     return (
-      <img className={this.getCSSClassString()} src={this.props.src} />
+      <div onClick={() => this.props.onThumbnailClick(this.props.id) }>
+        <img className={this.getCSSClassString()} src={this.props.src} />
+      </div>
     );
   }
 }

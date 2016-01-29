@@ -1,7 +1,8 @@
 export const THUMB_CLICK = 'THUMB_CLICK';
 
-export function thumbClick() {
+export function thumbClick(id) {
   return {
-    type: THUMB_CLICK
+    type: THUMB_CLICK,
+    active: id
   };
 }
