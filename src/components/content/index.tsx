@@ -23,7 +23,9 @@ class SlideVideo extends React.Component<IContent, {}> {
   render() {
     const { active } = this.props;
     return(
-      <img className="slide" src={`img/00-0${active}.png`} />
+      <video className="slide" controls>
+         <source src="indigo.ogg" type="video/ogg" />
+      </video>
     );
   }
 }
