@@ -21,7 +21,7 @@ export default class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
       <Thumbnail
         key={index}
         id={index}
-        src={`img/00-0${index}.png`}
+        src={`img/sm/00-0${index}.png`}
         cls={(() => {
            if (active === index) { return 'thumbnail--active'; }
            if (index === active - 1 || index === active + 1) { return 'thumbnail--active-adjacend'; }
