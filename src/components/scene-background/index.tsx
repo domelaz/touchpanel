@@ -10,7 +10,7 @@ interface IBack {
 
 export default class SceneBackground extends React.Component<IBack, {}> {
   render() {
-    let style = { 'backgroundPositionX': ( this.props.xpos - 2 ) * -100 };
+    let style = { 'backgroundPositionX': ( this.props.xpos ) * -60 };
     return (
       <div style={style} className="scene-background"></div>
     );

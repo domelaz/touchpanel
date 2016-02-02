@@ -27,7 +27,7 @@ class App extends React.Component<IApp, {}> {
         <ThumbnailsFeed
           onThumbnailClick = {actions.thumbClick}
           onNavClick = {actions.navClick}
-          thumbnails = {[2,3,4,5,6,7]}
+          thumbnails = {[1,2,3,4,5,6,7,8,9,10]}
           active = {this.props.active}
         />
         <Content active = {this.props.active} />
