@@ -12,9 +12,10 @@ interface IContent {
 export default class Content extends React.Component<IContent, {}> {
   render() {
     const { active } = this.props;
+    let direction="content-left";
     return (
       <ReactCSSTransitionGroup
-        transitionName="content"
+        transitionName={direction}
         transitionEnterTimeout={400}
         transitionLeaveTimeout={400}>
           <div key={active} className="content">
