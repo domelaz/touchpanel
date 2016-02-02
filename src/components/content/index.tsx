@@ -7,12 +7,13 @@ import * as ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 interface IContent {
   active?: number
+  delta?: number
 }
 
 export default class Content extends React.Component<IContent, {}> {
   render() {
-    const { active } = this.props;
-    let direction="content-left";
+    const { active, delta } = this.props;
+    let direction = delta > 0 ? "content-left" : "content-right";
     return (
       <ReactCSSTransitionGroup
         transitionName={direction}

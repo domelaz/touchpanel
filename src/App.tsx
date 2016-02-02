@@ -13,12 +13,13 @@ import * as Actions from './actions';
 
 interface IApp {
   active?: number,
+  delta?: number,
   dispatch?(any): void
 }
 
 class App extends React.Component<IApp, {}> {
   render() {
-    const { active, dispatch } = this.props;
+    const { active, delta, dispatch } = this.props;
     const actions = bindActionCreators(Actions, dispatch);
 
     return (
@@ -30,7 +31,7 @@ class App extends React.Component<IApp, {}> {
           thumbnails = {[1,2,3,4,5,6,7,8,9,10]}
           active = {this.props.active}
         />
-        <Content active = {this.props.active} />
+        <Content active = {this.props.active} delta = {delta} />
       </div>
     );
   }
