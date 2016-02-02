@@ -1,5 +1,8 @@
 @import 'variables.less';
 
+@animAmount: 1500px;
+@animLength: 400ms;
+
 .content {
   position: absolute;
   display: flex;
@@ -18,19 +21,19 @@
 }
 
 .content-enter {
-  opacity: 0.01;
+  left: @animAmount;
 
   &.content-enter-active {
-    opacity: 1;
-    transition: opacity 500ms ease-in;
+    left: 0;
+    transition: left @animLength ease-in;
   }
 }
 
 .content-leave {
-  opacity: 1;
+  left: 0;
 
   &.content-leave-active {
-    opacity: 0.01;
-    transition: opacity 200ms ease-in;
+    left: -@animAmount;
+    transition: left @animLength ease-in;
   }
 }

@@ -15,8 +15,8 @@ export default class Content extends React.Component<IContent, {}> {
     return (
       <ReactCSSTransitionGroup
         transitionName="content"
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}>
+        transitionEnterTimeout={400}
+        transitionLeaveTimeout={400}>
           <div key={active} className="content">
             <img className="slide" src={`img/00-0${active}.png`} />
           </div>
