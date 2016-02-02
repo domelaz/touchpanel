@@ -22,7 +22,10 @@ export default class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
         key={index}
         id={index}
         src={`img/00-0${index}.png`}
-        cls={active === index ? 'thumbnail--active' : undefined}
+        cls={(() => {
+           if (active === index) { return 'thumbnail--active'; }
+           if (index === active - 1 || index === active + 1) { return 'thumbnail--active-adjacend'; }
+        })()}
         onThumbnailClick={this.props.onThumbnailClick}
       />
     );
