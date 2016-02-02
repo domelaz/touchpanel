@@ -23,7 +23,7 @@ class App extends React.Component<IApp, {}> {
 
     return (
       <div className="app-container">
-        <SceneBackground />
+        <SceneBackground xpos = {this.props.active} />
         <ThumbnailsFeed
           onThumbnailClick = {actions.thumbClick}
           onNavClick = {actions.navClick}

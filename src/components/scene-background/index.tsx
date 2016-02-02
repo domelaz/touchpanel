@@ -4,10 +4,15 @@
 
 import * as React from 'react';
 
-export default class SceneBackground extends React.Component<{}, {}> {
+interface IBack {
+  xpos?: number
+}
+
+export default class SceneBackground extends React.Component<IBack, {}> {
   render() {
+    let style = { 'backgroundPositionX': ( this.props.xpos - 2 ) * -100 };
     return (
-      <div className="scene-background"></div>
+      <div style={style} className="scene-background"></div>
     );
   }
 }
