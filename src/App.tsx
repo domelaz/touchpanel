@@ -38,7 +38,8 @@ class App extends React.Component<IApp, {}> {
 
 function select(state) {
   return {
-    active: state.active
+    active: state.active,
+    delta: state.delta
   };
 }
 
