@@ -6,9 +6,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import SceneBackground from './components/scene-background';
-import ThumbnailsFeed from './components/thumbnails-feed';
-import Content from './components/content';
+import { SceneBackground } from './components/scene-background';
+import { ThumbnailsFeed } from './components/thumbnails-feed';
+import { Content } from './components/content';
 import * as Actions from './actions';
 
 interface IApp {

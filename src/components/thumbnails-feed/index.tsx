@@ -3,8 +3,8 @@
 'use strict';
 
 import * as React from 'react';
-import Thumbnail from '../thumbnail';
-import Navigate from '../navigate';
+import { Thumbnail } from '../thumbnail';
+import { Navigate } from '../navigate';
 
 interface IFeedProps {
   thumbnails: number[],
@@ -13,7 +13,7 @@ interface IFeedProps {
   onNavClick(any): void
 }
 
-export default class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
+export class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
   render() {
     const { thumbnails, active } = this.props;
 

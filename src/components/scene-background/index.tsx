@@ -8,7 +8,7 @@ interface IBack {
   xpos?: number
 }
 
-export default class SceneBackground extends React.Component<IBack, {}> {
+export class SceneBackground extends React.Component<IBack, {}> {
   render() {
     let style = { 'backgroundPositionX': ( this.props.xpos ) * -60 };
     return (

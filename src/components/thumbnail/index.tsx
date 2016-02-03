@@ -12,7 +12,7 @@ interface IThumbProp {
   onThumbnailClick
 }
 
-export default class Thumbnail extends React.Component<IThumbProp, {}> {
+export class Thumbnail extends React.Component<IThumbProp, {}> {
   defaultClass = 'thumbnail';
 
   getCSSClassString() {

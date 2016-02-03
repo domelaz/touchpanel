@@ -30,7 +30,7 @@ class SlideVideo extends React.Component<IContent, {}> {
   }
 }
 
-export default class Content extends React.Component<IContent, {}> {
+export class Content extends React.Component<IContent, {}> {
   render() {
     const { active, delta } = this.props;
     let direction = delta > 0 ? "content-left" : "content-right";

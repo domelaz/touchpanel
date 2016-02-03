@@ -9,7 +9,7 @@ interface INavProps {
   onNavClick?(any): void
 }
 
-export default class Navigate extends React.Component<INavProps, {}> {
+export class Navigate extends React.Component<INavProps, {}> {
   render() {
     return (
       <div className={(() => {
