@@ -3,6 +3,7 @@
 'use strict';
 
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -14,6 +15,7 @@ import * as Actions from './actions';
 interface IApp {
   active?: number,
   delta?: number,
+  dim?,
   dispatch?(any): void
 }
 
@@ -23,6 +25,26 @@ class App extends React.Component<IApp, {}> {
   constructor(props) {
     super(props);
     this.actions = bindActionCreators(Actions, props.dispatch);
+  }
+
+  /**
+   * Initial mount
+   */
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize.bind(this));
+    this.handleResize();
+  }
+
+  /**
+   * Keep dimensions in state
+   */
+  handleResize() {
+    const dn = ReactDOM.findDOMNode(this);
+    const dim = {
+      width:  dn.clientWidth,
+      height: dn.clientHeight
+    };
+    this.actions.resize(dim);
   }
 
   render() {
@@ -47,7 +69,8 @@ class App extends React.Component<IApp, {}> {
 function select(state) {
   return {
     active: state.active,
-    delta: state.delta
+    delta: state.delta,
+    dim: state.dim
   };
 }
 

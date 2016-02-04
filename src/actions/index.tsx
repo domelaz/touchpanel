@@ -1,6 +1,7 @@
 export const THUMB_CLICK = 'THUMB_CLICK';
 export const FEED_LEFT   = 'FEED_LEFT';
 export const FEED_RIGHT  = 'FEED_RIGHT';
+export const RESIZE      = 'RESIZE';
 
 export function thumbClick(id) {
   return {
@@ -10,8 +11,14 @@ export function thumbClick(id) {
 }
 
 export function navClick(dir) {
-  console.log('Here');
   return {
     type: dir === 'back' ? FEED_LEFT : FEED_RIGHT
+  }
+}
+
+export function resize(dimenstions) {
+  return {
+    type: RESIZE,
+    dim: dimenstions
   }
 }
