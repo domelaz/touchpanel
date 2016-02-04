@@ -1,32 +1,27 @@
 import { THUMB_CLICK, FEED_RIGHT, FEED_LEFT, RESIZE } from '../actions';
 
 export default function baggage(state = { active: 1, delta: 1, dim: null }, action) {
+  // Clone state
+  let s = Object.assign({}, state);
+
   switch (action.type) {
     case THUMB_CLICK:
-      return {
-        active: action.active,
-        delta: state.active > action.active ? -1 : 1,
-        dim: state.dim
-      };
+      s.active = action.active;
+      s.delta = state.active > action.active ? -1 : 1;
+      break;
     case FEED_LEFT:
-      return {
-        active: state.active === 1 ? 10 : state.active - 1,
-        delta: -1,
-        dim: state.dim
-      };
+      s.active = state.active === 1 ? 10 : state.active - 1;
+      s.delta = -1;
+      break;
     case FEED_RIGHT:
-      return {
-        active: state.active === 10 ? 1 : state.active + 1,
-        delta: 1,
-        dim: state.dim
-      };
+      s.active = state.active === 10 ? 1 : state.active + 1;
+      s.delta = 1;
+      break;
     case RESIZE:
-      return {
-        active: state.active,
-        delta: state.delta,
-        dim: action.dim
-      };
+      s.dim = action.dim;
+      break;
     default:
       return state;
   }
+  return s;
 };
