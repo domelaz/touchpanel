@@ -6,19 +6,28 @@ import * as React from 'react';
 
 interface INavProps {
   dir: string,
-  onNavClick?(any): void
+  onNavClick?(any): void,
+  active: number,
+  stop?: number
 }
 
 export class Navigate extends React.Component<INavProps, {}> {
   render() {
+    let classes;
+
+    switch(this.props.dir) {
+      case "back":
+        classes = "thumbnails-nav";
+        if (this.props.active === 1) classes += ' disabled'
+        break;
+      case "forth":
+        classes = "thumbnails-nav thumbnails-nav--right";
+        if (this.props.active === this.props.stop) classes += ' disabled'
+        break;
+    }
+
     return (
-      <div className={(() => {
-        switch(this.props.dir) {
-          case "back":  return "thumbnails-nav";
-          case "forth": return "thumbnails-nav thumbnails-nav--right";
-        }
-      })()}
-      onClick={() => this.props.onNavClick(this.props.dir)}></div>
+      <div className={classes} onClick={() => this.props.onNavClick(this.props.dir)}></div>
     );
   }
 }
