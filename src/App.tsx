@@ -18,9 +18,16 @@ interface IApp {
 }
 
 class App extends React.Component<IApp, {}> {
+  private actions: any;
+
+  constructor(props) {
+    super(props);
+    this.actions = bindActionCreators(Actions, props.dispatch);
+  }
+
   render() {
     const { active, delta, dispatch } = this.props;
-    const actions = bindActionCreators(Actions, dispatch);
+    const actions = this.actions;
 
     return (
       <div className="app-container">
