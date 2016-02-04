@@ -15,6 +15,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 app.use('/css/', express.static('app/css/'));
 app.use('/img/', express.static('app/img/'));
+app.use('/media/', express.static('app/media/'));
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'app', 'index.html'));

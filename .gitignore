@@ -8,3 +8,6 @@ app/index.html
 
 # tsc output by default
 built/
+
+# Media folder ignored, video too big to git
+app/media/
