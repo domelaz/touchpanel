@@ -10,11 +10,11 @@ export default function baggage(state = { active: 1, delta: 1, dim: null }, acti
       s.delta = state.active > action.active ? -1 : 1;
       break;
     case FEED_LEFT:
-      s.active = state.active === 1 ? 10 : state.active - 1;
+      s.active = state.active === 1 ? 1 : state.active - 1;
       s.delta = -1;
       break;
     case FEED_RIGHT:
-      s.active = state.active === 10 ? 1 : state.active + 1;
+      s.active = state.active === 10 ? 10 : state.active + 1;
       s.delta = 1;
       break;
     case RESIZE:
