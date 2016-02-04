@@ -6,7 +6,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 interface IBack {
-  xpos?: number
+  xpos?: number,
+  steps: number
 }
 
 export class SceneBackground extends React.Component<IBack, {}> {
@@ -33,8 +34,7 @@ export class SceneBackground extends React.Component<IBack, {}> {
     const bgImage = ReactDOM.findDOMNode(this);
     const ratio = bgImage.clientHeight / this.imgHeight;
     const actualWidth = this.imgWidth * ratio;
-    const thumbnailsCount = 10; // @todo get in props
-    this.step = ( bgImage.clientWidth - actualWidth ) / thumbnailsCount;
+    this.step = ( bgImage.clientWidth - actualWidth ) / this.props.steps;
   }
 
   /**
