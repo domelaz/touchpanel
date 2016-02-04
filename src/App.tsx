@@ -21,10 +21,12 @@ interface IApp {
 
 class App extends React.Component<IApp, {}> {
   private actions: any;
+  private thumbs: Array<number>;
 
   constructor(props) {
     super(props);
     this.actions = bindActionCreators(Actions, props.dispatch);
+    this.thumbs = [1,2,3,4,5,6,7,8,9,10]; // @todo from props
   }
 
   /**
@@ -57,7 +59,7 @@ class App extends React.Component<IApp, {}> {
         <ThumbnailsFeed
           onThumbnailClick = {actions.thumbClick}
           onNavClick = {actions.navClick}
-          thumbnails = {[1,2,3,4,5,6,7,8,9,10]}
+          thumbnails = {this.thumbs}
           active = {this.props.active}
         />
         <Content active = {this.props.active} delta = {delta} />
