@@ -17,13 +17,20 @@
   overflow: hidden;
 }
 
-.thumbnails-nav {
-  cursor: pointer;
+.nav-wrap {
   width: @thm-nav-width;
   min-width: @thm-nav-min-width;
-  background: url(../img/arrow.png) center no-repeat;
   height: @thm-height;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   z-index: 1500;
+}
+
+.thumbnails-nav {
+  cursor: pointer;
+  background: url(../img/arrow.png) center no-repeat;
+  height: @thm-height * 0.4;
 }
 
 .thumbnails-nav--right {
