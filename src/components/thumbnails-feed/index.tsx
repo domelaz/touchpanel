@@ -36,7 +36,9 @@ export class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
           <Navigate dir="forth" onNavClick={this.props.onNavClick} />
           <Navigate dir="back" onNavClick={this.props.onNavClick} />
         </div>
-        <div className="thumbnails-set">{thmSet}</div>
+        <div className="thumbnails-set">
+          <div className="wrap">{thmSet}</div>
+        </div>
       </div>
     );
   }

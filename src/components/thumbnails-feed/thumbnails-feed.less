@@ -3,7 +3,7 @@
 .thumbnails-feed {
   display: flex;
   justify-content: space-between;
-  padding: @thm-padding;
+  padding: @thm-padding 0 @thm-padding @thm-padding;
   position: relative;
   height: @thm-height;
   bottom: @thm-height + @thm-shift;
@@ -13,8 +13,13 @@
 
 .thumbnails-set {
   display: flex;
-  align-items: center;
   overflow: hidden;
+  .wrap {
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 0;
+  }
 }
 
 .nav-wrap {
