@@ -1,0 +1,26 @@
+@import 'variables.less';
+
+.nav-wrap {
+  width: @thm-nav-width;
+  min-width: @thm-nav-min-width;
+  height: @thm-height;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1500;
+
+  .disabled {
+    opacity: 0.25;
+    transition: opacity 400ms ease-in;
+  }
+}
+
+.thumbnails-nav {
+  cursor: pointer;
+  background: url(../img/arrow.png) center no-repeat;
+  height: @thm-height * 0.4;
+}
+
+.thumbnails-nav--right {
+  transform: rotate(180deg);
+}
