@@ -50,7 +50,7 @@ class App extends React.Component<IApp, {}> {
   }
 
   render() {
-    const { active, delta, dispatch } = this.props;
+    const { active, delta, dim, dispatch } = this.props;
     const actions = this.actions;
 
     return (
@@ -61,6 +61,8 @@ class App extends React.Component<IApp, {}> {
           onNavClick = {actions.navClick}
           thumbnails = {this.thumbs}
           active = {this.props.active}
+          delta = {delta}
+          dim = {dim}
         />
         <Content active = {this.props.active} delta = {delta} />
       </div>

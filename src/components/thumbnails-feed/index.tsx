@@ -3,19 +3,23 @@
 'use strict';
 
 import * as React from 'react';
+
 import { Thumbnail } from '../thumbnail';
 import { Navigate } from '../navigate';
+import { ThumbnailsWrapper } from './ThumbnailsWrapper';
 
 interface IFeedProps {
   thumbnails: number[],
   active: number,
   onThumbnailClick(number): void,
-  onNavClick(any): void
+  onNavClick(any): void,
+  dim: any,
+  delta: number
 }
 
 export class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
   render() {
-    const { thumbnails, active } = this.props;
+    const { thumbnails, active, dim } = this.props;
 
     let thmSet = thumbnails.map(index =>
       <Thumbnail
@@ -37,7 +41,7 @@ export class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
           <Navigate dir="back" onNavClick={this.props.onNavClick} active={active} />
         </div>
         <div className="thumbnails-set">
-          <div className="wrap">{thmSet}</div>
+          <ThumbnailsWrapper content={thmSet} active={active} dim={dim} />
         </div>
       </div>
     );
