@@ -35,6 +35,23 @@ class App extends React.Component<IApp, {}> {
   componentDidMount() {
     window.addEventListener('resize', this.handleResize.bind(this));
     this.handleResize();
+    this.setBgAudio();
+  }
+
+  setBgAudio() {
+    let bgAudio = new AudioContext();
+    var request = new XMLHttpRequest();
+    request.open('GET', 'media/machinery.ogg', true);
+    request.responseType = 'arraybuffer';
+    request.onload = function() {
+      bgAudio.decodeAudioData(request.response, function(buffer) {
+        let source = bgAudio.createBufferSource();
+        source.buffer = buffer;
+        source.connect(bgAudio.destination);
+        source.start(0);
+      });
+    };
+    request.send();
   }
 
   /**
