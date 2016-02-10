@@ -1,6 +1,6 @@
 @import 'variables.less';
 
-@animAmount: 1500px;
+@animAmount: 100%;
 @animLength: 400ms;
 
 .content {
@@ -21,37 +21,37 @@
 }
 
 .content-right-enter {
-  left:  -@animAmount;
+  transform: translate3d(-@animAmount, 0, 0);
 
   &.content-right-enter-active {
-    left: 0;
-    transition: left @animLength ease-in;
+    transform: translate3d(0, 0, 0);
+    transition: transform @animLength ease-in;
   }
 }
 
 .content-right-leave {
-  left: 0;
+  transform: translate3d(0, 0, 0);
 
   &.content-right-leave-active {
-    left: @animAmount;
-    transition: left @animLength ease-in;
+    transform: translate3d(@animAmount, 0, 0);
+    transition: transform @animLength ease-in;
   }
 }
 
 .content-left-enter {
-  left: @animAmount;
+  transform: translate3d(@animAmount, 0, 0);
 
   &.content-left-enter-active {
-    left: 0;
-    transition: left @animLength ease-in;
+    transform: translate3d(0, 0, 0);
+    transition: transform @animLength ease-in;
   }
 }
 
 .content-left-leave {
-  left: 0;
+  transform: translate3d(0, 0, 0);
 
   &.content-left-leave-active {
-    left: -@animAmount;
-    transition: left @animLength ease-in;
+    transform: translate3d(-@animAmount, 0, 0);
+    transition: transform @animLength ease-in;
   }
 }
