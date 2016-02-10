@@ -7,8 +7,9 @@ import * as ReactDOM from 'react-dom';
 
 interface IWrapperProps {
   active: number,
-  content: any,
-  dim: any
+  content: number,
+  dim: any,
+  children?: any
 }
 
 export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
@@ -42,7 +43,7 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
     // If all thumbnails fits in screen do nothing;
     if (this.myWidth <= nextProps.dim.width) return;
 
-    const contentItemWidth = this.myWidth / nextProps.content.length;
+    const contentItemWidth = this.myWidth / nextProps.content;
     const delta = nextProps.active > this.props.active ? 1 : -1;
     
     // Active element bounds
@@ -68,7 +69,7 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
   render() {
     let style = { 'transform': `translate3d(${this.myPosition}px, 0, 0)` };
     return (
-      <div style={style} className="wrap">{this.props.content}</div>
+      <div style={style} className="wrap">{this.props.children}</div>
     );
   }
 }

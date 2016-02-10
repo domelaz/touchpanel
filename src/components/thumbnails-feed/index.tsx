@@ -41,7 +41,9 @@ export class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
           <Navigate dir="back" onNavClick={this.props.onNavClick} active={active} />
         </div>
         <div className="thumbnails-set">
-          <ThumbnailsWrapper content={thmSet} active={active} dim={dim} />
+          <ThumbnailsWrapper content={thmSet.length} active={active} dim={dim}>
+            {thmSet}
+          </ThumbnailsWrapper>
         </div>
       </div>
     );
