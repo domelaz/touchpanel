@@ -17,6 +17,12 @@ interface IFeedProps {
   delta: number
 }
 
+/**
+ * CSS classes
+ */
+const css_act = 'thumbnail--active';
+const css_adj = 'thumbnail--active-adjacend';
+
 export class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
   render() {
     const { thumbnails, active, dim } = this.props;
@@ -27,8 +33,8 @@ export class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
         id={index}
         src={`img/sm/00-0${index}.png`}
         cls={(() => {
-           if (active === index) { return 'thumbnail--active'; }
-           if (index === active - 1 || index === active + 1) { return 'thumbnail--active-adjacend'; }
+           if (active === index) { return css_act; }
+           if (index === active - 1 || index === active + 1) { return css_adj; }
         })()}
         onThumbnailClick={this.props.onThumbnailClick}
       />
