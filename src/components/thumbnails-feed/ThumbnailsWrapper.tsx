@@ -7,7 +7,6 @@ import * as ReactDOM from 'react-dom';
 
 interface IWrapperProps {
   active: number,
-  content: number,
   dim: any,
   children?: any
 }
@@ -43,9 +42,10 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
     // If all thumbnails fits in screen do nothing;
     if (this.myWidth <= nextProps.dim.width) return;
 
-    const contentItemWidth = this.myWidth / nextProps.content;
+    const contentLength = React.Children.count(this.props.children);
+    const contentItemWidth = this.myWidth / contentLength;
     const delta = nextProps.active > this.props.active ? 1 : -1;
-    
+
     // Active element bounds
     const bLeft = (nextProps.active) * contentItemWidth + this.myPosition;
     const bRight = bLeft + contentItemWidth;
@@ -55,7 +55,7 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
     // Right direction case and extremum
     if (bRight >= nextProps.dim.width) {
       const stop = nextProps.dim.width - this.myWidth - 100; // 100 = controls width
-      if (nextProps.active === nextProps.content.length) { nextPosition = stop; }
+      if (nextProps.active === contentLength) { nextPosition = stop; }
       this.myPosition = nextPosition;
     }
 
