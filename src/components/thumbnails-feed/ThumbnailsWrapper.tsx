@@ -66,7 +66,7 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
   }
 
   render() {
-    let style = { 'left': this.myPosition };
+    let style = { 'transform': `translate3d(${this.myPosition}px, 0, 0)` };
     return (
       <div style={style} className="wrap">{this.props.content}</div>
     );
