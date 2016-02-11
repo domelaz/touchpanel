@@ -11,6 +11,9 @@ interface IWrapperProps {
   children?: any
 }
 
+let swipeDelta = { x: null, y: null };
+let swipeBack;
+
 export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
   private myPosition: number;
   private myWidth:    number;
@@ -24,6 +27,40 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
   handleResize() {
     const el = ReactDOM.findDOMNode(this);
     this.myWidth = el.clientWidth;
+  }
+
+  handleTouch<TouchEvent>(e): void {
+    const touch = e.changedTouches[0];
+    switch (e.type) {
+      case "touchstart":
+        swipeBack = undefined;
+        swipeDelta.x = touch.pageX;
+        break;
+      case "touchmove":
+        const delta = touch.pageX - swipeDelta.x; 
+        const stop = -420;
+        swipeDelta.x = touch.pageX;
+        let nextPosition = this.myPosition + delta;
+        if (delta > 0 && nextPosition >= 0) {
+          nextPosition = this.myPosition + (delta / 5);
+          swipeBack = 0;
+        }
+        if (delta < 0 && nextPosition < stop) {
+          nextPosition = this.myPosition + (delta / 5);
+          swipeBack = stop;
+        }
+        this.myPosition = nextPosition;
+        this.forceUpdate();
+        break;
+      case "touchend":
+        if (!isNaN(swipeBack)) {
+          this.myPosition = swipeBack;
+          this.forceUpdate();
+        }
+        break;
+      case "touchcancel":
+        break;
+    }
   }
 
   /**
@@ -68,8 +105,15 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
 
   render() {
     let style = { 'transform': `translate3d(${this.myPosition}px, 0, 0)` };
+    const touches = {
+      onTouchStart:  this.handleTouch,
+      onTouchMove:   this.handleTouch.bind(this),
+      onTouchEnd:    this.handleTouch.bind(this),
+      onTouchCancel: this.handleTouch
+    };
+
     return (
-      <div style={style} className="wrap">{this.props.children}</div>
+      <div style={style} {...touches} className="wrap">{this.props.children}</div>
     );
   }
 }
