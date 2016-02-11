@@ -6,27 +6,50 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 interface IWrapperProps {
-  active: number,
-  dim: any,
-  children?: any
+  active:      number,
+  dim:         any,
+  orientation: string,
+  children?:   any
+}
+
+interface IWrapperDims {
+  spread:    number, // Width or height of wrapper
+  item:      number, // Child item width or height
+  stopLeft:  number, // Left extremum
+  stopRight: number, // Right extremum
 }
 
 let swipeDelta = { x: null, y: null };
 let swipeBack;
 
 export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
-  private myPosition: number;
-  private myWidth:    number;
+  private myPosition:  number;
+  private dimensions:  IWrapperDims;
+  private orientation: string;
 
   constructor(props) {
     super(props);
     this.myPosition = 0;
-    this.myWidth    = 100;
   }
 
   handleResize() {
     const el = ReactDOM.findDOMNode(this);
-    this.myWidth = el.clientWidth;
+
+    const { orientation, dim } = this.props;
+
+    const isWide = ['wide', 'long', 'landscape'].indexOf(orientation) !== -1;
+    const dWrapper  = isWide ? el.clientWidth : el.clientHeight;
+    const dParent   = isWide ? dim.width : dim.height;
+    const dControls = 100; // @todo css size of nav-wrap, move it from here
+    const items = React.Children.count(this.props.children);
+    const dContentItem = dWrapper / items;
+
+    this.dimensions = {
+      spread: dWrapper,
+      item: dContentItem,
+      stopLeft: 0,
+      stopRight: dParent - dWrapper - dControls,
+    };
   }
 
   handleTouch<TouchEvent>(e): void {
@@ -68,6 +91,7 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
    */
   componentDidMount() {
     window.addEventListener('resize', this.handleResize.bind(this));
+    this.dimensions = undefined;
   }
 
   /**
@@ -75,24 +99,28 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
    */
   componentWillReceiveProps(nextProps: IWrapperProps) {
     if (nextProps.active === this.props.active) return;
-    this.handleResize();
-    // If all thumbnails fits in screen do nothing;
-    if (this.myWidth <= nextProps.dim.width) return;
 
-    const contentLength = React.Children.count(this.props.children);
-    const contentItemWidth = this.myWidth / contentLength;
+    if (typeof(this.dimensions) === 'undefined') {
+      this.handleResize();
+    }
+
+    const { spread, item, stopLeft, stopRight } = this.dimensions;
+    const items = React.Children.count(this.props.children);
+
+    // If all thumbnails fits in screen do nothing;
+    if (spread <= nextProps.dim.width) return;
+
     const delta = nextProps.active > this.props.active ? 1 : -1;
 
     // Active element bounds
-    const bLeft = (nextProps.active) * contentItemWidth + this.myPosition;
-    const bRight = bLeft + contentItemWidth;
+    const bLeft = (nextProps.active) * item + this.myPosition;
+    const bRight = bLeft + item;
 
-    let nextPosition = this.myPosition + contentItemWidth * -delta;
+    let nextPosition = this.myPosition + item * -delta;
 
     // Right direction case and extremum
     if (bRight >= nextProps.dim.width) {
-      const stop = nextProps.dim.width - this.myWidth - 100; // 100 = controls width
-      if (nextProps.active === contentLength) { nextPosition = stop; }
+      if (nextProps.active === items) { nextPosition = stopRight; }
       this.myPosition = nextPosition;
     }
 
