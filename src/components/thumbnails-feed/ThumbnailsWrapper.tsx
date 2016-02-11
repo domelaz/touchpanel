@@ -36,7 +36,7 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
   /**
    * Calculate horizontal shift if invisible thumbnails presents
    */
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: IWrapperProps) {
     if (nextProps.active === this.props.active) return;
     this.handleResize();
     // If all thumbnails fits in screen do nothing;

@@ -72,16 +72,16 @@ class App extends React.Component<IApp, {}> {
 
     return (
       <div className="app-container">
-        <SceneBackground xpos = {this.props.active} steps = {this.thumbs.length} />
+        <SceneBackground xpos = {active} steps = {this.thumbs.length} />
         <ThumbnailsFeed
           onThumbnailClick = {actions.thumbClick}
           onNavClick = {actions.navClick}
           thumbnails = {this.thumbs}
-          active = {this.props.active}
+          active = {active}
           delta = {delta}
           dim = {dim}
         />
-        <Content active = {this.props.active} delta = {delta} />
+        <Content active = {active} delta = {delta} />
       </div>
     );
   }

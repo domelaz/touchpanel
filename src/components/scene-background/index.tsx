@@ -6,7 +6,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 interface IBack {
-  xpos?: number,
+  xpos: number,
   steps: number
 }
 
@@ -46,7 +46,7 @@ export class SceneBackground extends React.Component<IBack, {}> {
   }
 
   render() {
-    let style = { 'backgroundPositionX': ( this.props.xpos * this.step ) };
+    let style = { 'backgroundPositionX': ( (this.props.xpos - 1) * this.step ) };
     return (
       <div style={style} className="scene-background"></div>
     );
