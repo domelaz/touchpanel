@@ -53,6 +53,12 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
   }
 
   handleTouch<TouchEvent>(e): void {
+    if (typeof(this.dimensions) === 'undefined') {
+      this.handleResize();
+    }
+
+    const { stopLeft, stopRight } = this.dimensions;
+
     const touch = e.changedTouches[0];
     switch (e.type) {
       case "touchstart":
@@ -61,16 +67,15 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
         break;
       case "touchmove":
         const delta = touch.pageX - swipeDelta.x; 
-        const stop = -420;
         swipeDelta.x = touch.pageX;
         let nextPosition = this.myPosition + delta;
         if (delta > 0 && nextPosition >= 0) {
           nextPosition = this.myPosition + (delta / 5);
-          swipeBack = 0;
+          swipeBack = stopLeft;
         }
-        if (delta < 0 && nextPosition < stop) {
+        if (delta < 0 && nextPosition < stopRight) {
           nextPosition = this.myPosition + (delta / 5);
-          swipeBack = stop;
+          swipeBack = stopRight;
         }
         this.myPosition = nextPosition;
         this.forceUpdate();
@@ -134,10 +139,10 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
   render() {
     let style = { 'transform': `translate3d(${this.myPosition}px, 0, 0)` };
     const touches = {
-      onTouchStart:  this.handleTouch,
+      onTouchStart:  this.handleTouch.bind(this),
       onTouchMove:   this.handleTouch.bind(this),
       onTouchEnd:    this.handleTouch.bind(this),
-      onTouchCancel: this.handleTouch
+      onTouchCancel: this.handleTouch.bind(this),
     };
 
     return (
