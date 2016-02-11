@@ -1,24 +1,23 @@
-export const THUMB_CLICK = 'THUMB_CLICK';
-export const FEED_LEFT   = 'FEED_LEFT';
-export const FEED_RIGHT  = 'FEED_RIGHT';
-export const RESIZE      = 'RESIZE';
+'use strict';
+
+import * as c from '../constants';
 
 export function thumbClick(id) {
   return {
-    type: THUMB_CLICK,
+    type: c.THUMB_CLICK,
     active: id
   };
 }
 
 export function navClick(dir) {
   return {
-    type: dir === 'back' ? FEED_LEFT : FEED_RIGHT
+    type: dir === 'back' ? c.FEED_LEFT : c.FEED_RIGHT
   }
 }
 
 export function resize(dimenstions) {
   return {
-    type: RESIZE,
+    type: c.RESIZE,
     dim: dimenstions
   }
 }
