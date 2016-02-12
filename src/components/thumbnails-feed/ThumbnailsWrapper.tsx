@@ -100,8 +100,22 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
    * Initial mount
    */
   componentDidMount() {
-    window.addEventListener('resize', this.handleResize.bind(this));
     this.dimensions = undefined;
+
+    // Calculate initial dimensions when all content loaded
+    const fn = this.handleResize.bind(this);
+    window.addEventListener('load', () => {
+      fn();
+      window.removeEventListener('load', fn);
+    });
+  }
+
+  componentDidUpdate(prevProps: IWrapperProps) {
+    // Parent component provide their dimensions via props
+    // and pass changes from single window.resize event
+    if (prevProps.dim !== this.props.dim) {
+      this.handleResize();
+    }
   }
 
   /**
@@ -143,6 +157,7 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
 
   render() {
     let style = { 'transform': `translate3d(${this.myPosition}px, 0, 0)` };
+
     const touches = {
       onTouchStart:  this.handleTouch.bind(this),
       onTouchMove:   this.handleTouch.bind(this),
