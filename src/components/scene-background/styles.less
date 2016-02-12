@@ -1,9 +1,9 @@
 @import 'variables.less';
 
 .scene-background {
-  background: @background-fill url(../img/background.png) center no-repeat;
-  background-size: cover;
   height: 100%;
-  transition: background-position-x 500ms ease-in;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  transition: transform 500ms ease-in;
 }
 

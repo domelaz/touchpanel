@@ -5,25 +5,24 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-interface IBack {
-  xpos: number,
-  steps: number
+interface IBackProps {
+  xpos:        number,
+  steps:       number,
+  orientation: string,
+  dim:         any,
 }
 
-export class SceneBackground extends React.Component<IBack, {}> {
+export class SceneBackground extends React.Component<IBackProps, {}> {
   /**
-   * Real background image size, see in Gimp or Photoshop
+   * Shift amount
    */
-  protected imgHeight: number;
-  protected imgWidth:  number;
-
   protected step: number;
+  protected wide: boolean;
 
   constructor(props) {
     super(props);
-    this.imgHeight = 260; // @todo move in props
-    this.imgWidth  = 600; // @todo move in props
-    this.step      = 0;
+    this.step = 0;
+    this.wide = true;
   }
 
   /**
@@ -31,27 +30,55 @@ export class SceneBackground extends React.Component<IBack, {}> {
    * screen size and real dimensions of background image
    */
   handleResize() {
+    const { steps, orientation, dim } = this.props;
+
+    const isWide = ['wide', 'long', 'landscape'].indexOf(orientation) !== -1;
+    const measure = isWide ? 'Width' : 'Height';
+
     const bgImage = ReactDOM.findDOMNode(this);
-    const ratio = bgImage.clientHeight / this.imgHeight;
-    const actualWidth = this.imgWidth * ratio;
-    this.step = ( bgImage.clientWidth - actualWidth ) / this.props.steps;
+    const thisSize = bgImage[`client${measure}`];
+    const outerSize = dim ? dim[measure.toLowerCase()] : 0;
+
+    this.step = ( outerSize - thisSize ) / steps;
+
     if (this.step > 0) {
       this.step = 0; // Background fits in screen completely
     }
+
+    this.wide = isWide;
   }
 
   /**
    * Initial mount
+   *
+   * Fire handleResize when background image fully
+   * loaded to get real sizes
    */
   componentDidMount() {
-    window.addEventListener('resize', this.handleResize.bind(this));
-    this.handleResize();
+    const img = ReactDOM.findDOMNode(this);
+    const fn = this.handleResize.bind(this);
+
+    img.addEventListener('load', () => {
+      fn();
+      img.removeEventListener('load', fn);
+    });
+  }
+
+  componentDidUpdate(prevProps: IBackProps) {
+    // Parent component provide their dimensions via props
+    // and pass changes from single window.resize event
+    if (prevProps.dim !== this.props.dim) {
+      this.handleResize();
+    }
   }
 
   render() {
-    let style = { 'backgroundPositionX': ( (this.props.xpos - 1) * this.step ) };
+    const shift = (this.props.xpos - 1) * this.step;
+    const amount = this.wide ? `${shift}px, 0` : `0, ${shift}px`;
+    const style = { transform: `translate3d(${amount}, 0)` };
+
     return (
-      <div style={style} className="scene-background"></div>
+      <img style={style} className="scene-background" src="img/background.png"/>
     );
   }
 }
