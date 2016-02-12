@@ -1,20 +1,29 @@
 @import 'variables.less';
 
+@adj-scale: 1.1, 1.1, 1;
+@adj-value: 11px;
+
 .thumbnail {
   cursor: pointer;
   margin: 0 @tum-h-margins;
   height: 11vh;
   box-shadow: 0 0 @tum-shadow-blur rgba(0, 0, 0, 0.5);
   border-radius: @tum-radius;
-  transition: height 0.5s;
+  will-change: transform;
+  transform: none;
+  transition: transform 0.5s ease-in;
 }
 
 .thumbnail--active {
   box-shadow: 0 0 @tum-shadow-blur * 2 rgba(255, 255, 255, 0.75);
-  height: 13vh;
-  transition: height 0.25s;
+  transform: scale3d(1.3, 1.3, 1);
+  transition: transform 0.25s ease-in;
 }
 
-.thumbnail--active-adjacend {
-  height: 12vh;
+.thumbnail--active-adjacend-left {
+  transform: scale3d(@adj-scale) translate3d(-@adj-value, 0, 0);
+}
+
+.thumbnail--active-adjacend-right {
+  transform: scale3d(@adj-scale) translate3d(@adj-value, 0, 0);
 }

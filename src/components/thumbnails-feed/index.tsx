@@ -34,7 +34,8 @@ export class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
         src={`img/sm/00-0${index}.png`}
         cls={(() => {
            if (active === index) { return css_act; }
-           if (index === active - 1 || index === active + 1) { return css_adj; }
+           if (index === active - 1) { return css_adj + '-left'; }
+           if (index === active + 1) { return css_adj + '-right'; }
         })()}
         onThumbnailClick={this.props.onThumbnailClick}
       />
