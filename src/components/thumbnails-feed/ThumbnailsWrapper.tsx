@@ -14,6 +14,7 @@ interface IWrapperProps {
 
 interface IWrapperDims {
   spread:    number, // Width or height of wrapper
+  fit:       boolean, // If wrapper fits in parent
   item:      number, // Child item width or height
   stopLeft:  number, // Left extremum
   stopRight: number, // Right extremum
@@ -46,6 +47,7 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
 
     this.dimensions = {
       spread: dWrapper,
+      fit: dWrapper <= dParent,
       item: dContentItem,
       stopLeft: 0,
       stopRight: dParent - dWrapper - dControls,
@@ -56,6 +58,9 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
     if (typeof(this.dimensions) === 'undefined') {
       this.handleResize();
     }
+
+    // If all thumbnails fits in screen do nothing;
+    if (this.dimensions.fit) return;
 
     const { stopLeft, stopRight } = this.dimensions;
 
@@ -109,11 +114,11 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
       this.handleResize();
     }
 
+    // If all thumbnails fits in screen do nothing;
+    if (this.dimensions.fit) return;
+
     const { spread, item, stopLeft, stopRight } = this.dimensions;
     const items = React.Children.count(this.props.children);
-
-    // If all thumbnails fits in screen do nothing;
-    if (spread <= nextProps.dim.width) return;
 
     const delta = nextProps.active > this.props.active ? 1 : -1;
 
