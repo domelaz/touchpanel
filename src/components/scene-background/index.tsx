@@ -35,6 +35,9 @@ export class SceneBackground extends React.Component<IBack, {}> {
     const ratio = bgImage.clientHeight / this.imgHeight;
     const actualWidth = this.imgWidth * ratio;
     this.step = ( bgImage.clientWidth - actualWidth ) / this.props.steps;
+    if (this.step > 0) {
+      this.step = 0; // Background fits in screen completely
+    }
   }
 
   /**
