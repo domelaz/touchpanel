@@ -17,4 +17,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['jade', 'less', 'webpack:build']);
   grunt.registerTask('build', ['default', 'exec:build']);
+  grunt.registerTask('resize', ['responsive_images']);
 };
