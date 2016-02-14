@@ -1,18 +1,17 @@
 @import 'variables.less';
 
 // Thumbnail
-@tum-radius: 10px;
-@tum-shadow-blur: 10px;
-@tum-width: 300px;
-@tum-h-margins: 15px;
+@tum-radius: 0.5vw;
+@tum-shadow-blur: 1.5vw;
+@tum-h-margins: 1.5vw;
 
 @adj-scale: 1.1, 1.1, 1;
-@adj-value: 11px;
+@adj-value: 0.75vw;
 
 .thumbnail {
   cursor: pointer;
   margin: 0 @tum-h-margins;
-  height: 11vh;
+  height: @thm-height / 2;
   box-shadow: 0 0 @tum-shadow-blur rgba(0, 0, 0, 0.5);
   border-radius: @tum-radius;
   will-change: transform;
@@ -21,7 +20,7 @@
 }
 
 .thumbnail--active {
-  box-shadow: 0 0 @tum-shadow-blur * 2 rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 @tum-shadow-blur rgba(255, 255, 255, 0.75);
   transform: scale3d(1.3, 1.3, 1);
   transition: transform 0.25s ease-in;
 }
