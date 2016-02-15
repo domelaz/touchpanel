@@ -16,6 +16,7 @@ interface IApp {
   active?: number,
   delta?: number,
   dim?,
+  feedposition?: number,
   dispatch?(any): void
 }
 
@@ -96,7 +97,8 @@ function select(state) {
   return {
     active: state.active,
     delta: state.delta,
-    dim: state.dim
+    dim: state.dim,
+    feedposition: state.feedposition,
   };
 }
 
