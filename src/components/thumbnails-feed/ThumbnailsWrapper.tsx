@@ -8,6 +8,7 @@ import * as ReactDOM from 'react-dom';
 interface IWrapperProps {
   active:      number,
   dim:         any,
+  pos:         number,
   orientation: string,
   children?:   any
 }

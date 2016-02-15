@@ -68,7 +68,7 @@ class App extends React.Component<IApp, {}> {
   }
 
   render() {
-    const { active, delta, dim, dispatch } = this.props;
+    const { active, delta, dim, feedposition, dispatch } = this.props;
     const actions = this.actions;
 
     return (
@@ -82,6 +82,7 @@ class App extends React.Component<IApp, {}> {
         <ThumbnailsFeed
           onThumbnailClick = {actions.thumbClick}
           onNavClick = {actions.navClick}
+          feedposition = {feedposition}
           thumbnails = {this.thumbs}
           active = {active}
           delta = {delta}
