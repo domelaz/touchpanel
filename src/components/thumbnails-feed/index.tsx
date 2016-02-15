@@ -31,7 +31,8 @@ export class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
       <Thumbnail
         key={index}
         id={index}
-        src={`img/sm/00-0${index}.png`}
+        imagepath='img'
+        src={`00-0${index}`}
         cls={(() => {
            if (active === index) { return css_act; }
            if (index === active - 1) { return css_adj + '-left'; }
