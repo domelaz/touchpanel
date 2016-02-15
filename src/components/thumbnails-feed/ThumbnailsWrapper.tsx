@@ -26,14 +26,8 @@ let swipeDelta = { x: null, y: null };
 let swipeBack;
 
 export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
-  private myPosition:  number;
   private dimensions:  IWrapperDims;
   private orientation: string;
-
-  constructor(props) {
-    super(props);
-    this.myPosition = 0;
-  }
 
   handleResize() {
     const el = ReactDOM.findDOMNode(this);
@@ -132,27 +126,28 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
     // If all thumbnails fits in screen do nothing;
     if (this.dimensions.fit) return;
 
+    const { pos, onSwipe } = this.props;
     const { spread, item, stopLeft, stopRight } = this.dimensions;
     const items = React.Children.count(this.props.children);
 
     const delta = nextProps.active > this.props.active ? 1 : -1;
 
     // Active element bounds
-    const bLeft = (nextProps.active) * item + this.myPosition;
+    const bLeft = (nextProps.active) * item + pos;
     const bRight = bLeft + item;
 
-    let nextPosition = this.myPosition + item * -delta;
+    let nextPosition = pos + item * -delta;
 
     // Right direction case and extremum
     if (bRight >= nextProps.dim.width) {
       if (nextProps.active === items) { nextPosition = stopRight; }
-      this.myPosition = nextPosition;
+      onSwipe(nextPosition);
     }
 
     // Left direction case and extremum
-    if (bLeft + this.myPosition < 0) {
+    if (bLeft + pos < 0) {
       if (nextProps.active === 1) { nextPosition = 0; }
-      this.myPosition = nextPosition;
+      onSwipe(nextPosition);
     }
   }
 
