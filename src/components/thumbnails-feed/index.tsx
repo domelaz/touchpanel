@@ -13,6 +13,7 @@ interface IFeedProps {
   active: number,
   onThumbnailClick(number): void,
   onNavClick(any): void,
+  onFeedChange(any): void,
   feedposition: number,
   dim: any,
   delta: number
@@ -50,7 +51,7 @@ export class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
           <Navigate dir="back" onNavClick={this.props.onNavClick} active={active} />
         </div>
         <div className="thumbnails-set">
-          <ThumbnailsWrapper orientation="wide" active={active} dim={dim} pos={this.props.feedposition}>
+          <ThumbnailsWrapper orientation="wide" active={active} dim={dim} pos={this.props.feedposition} onSwipe={this.props.onFeedChange}>
             {thmSet}
           </ThumbnailsWrapper>
         </div>

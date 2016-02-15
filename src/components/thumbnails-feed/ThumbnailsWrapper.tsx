@@ -10,6 +10,7 @@ interface IWrapperProps {
   dim:         any,
   pos:         number,
   orientation: string,
+  onSwipe(any): void,
   children?:   any
 }
 

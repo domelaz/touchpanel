@@ -82,6 +82,7 @@ class App extends React.Component<IApp, {}> {
         <ThumbnailsFeed
           onThumbnailClick = {actions.thumbClick}
           onNavClick = {actions.navClick}
+          onFeedChange = {actions.moveFeed}
           feedposition = {feedposition}
           thumbnails = {this.thumbs}
           active = {active}
