@@ -86,7 +86,7 @@ class App extends React.Component<IApp, {}> {
           delta = {delta}
           dim = {dim}
         />
-        <Content active = {active} delta = {delta} />
+        <Content active = {active} delta = {delta} imagepath="img" />
       </div>
     );
   }

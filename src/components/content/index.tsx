@@ -6,15 +6,27 @@ import * as React from 'react';
 import * as ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 interface IContent {
-  active?: number
-  delta?: number
+  active?: number,
+  delta?: number,
+  imagepath?: string,
 }
 
 class SlideImage extends React.Component<IContent, {}> {
   render() {
-    const { active } = this.props;
+    const { active, imagepath } = this.props;
+    const dpr = Math.round(window.devicePixelRatio) || 1;
+    const path = `${imagepath}/${dpr}x`;
+    const src = `00-0${active}.png`;
+
     return(
-      <img className="slide" src={`img/00-0${active}.png`} />
+      <picture>
+        <source media="(max-width: 736px)" srcSet={`${path}/sm/${src}`} />
+        <source media="(max-width: 960px)" srcSet={`${path}/md/${src}`} />
+        <source media="(max-width: 1440px)" srcSet={`${path}/lg/${src}`} />
+        <source media="(min-width: 1440px)" srcSet={`${path}/xl/${src}`} />
+
+        <img className="slide" src={`${imagepath}/${dpr}x/sm/${src}`} />
+      </picture>
     );
   }
 }
@@ -32,14 +44,14 @@ class SlideVideo extends React.Component<IContent, {}> {
 
 export class Content extends React.Component<IContent, {}> {
   render() {
-    const { active, delta } = this.props;
+    const { active, delta, imagepath } = this.props;
     let direction = delta > 0 ? "content-left" : "content-right";
     // Фабрика, ептыть :)
     let component;
     if (active === 9) {
       component = <SlideVideo active={active} />
     } else {
-      component = <SlideImage active={active} />
+      component = <SlideImage active={active} imagepath={imagepath} />
     }
     return (
       <ReactCSSTransitionGroup
