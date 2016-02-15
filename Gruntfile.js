@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['jade', 'less', 'webpack:build']);
+  grunt.registerTask('default', ['jade', 'less', 'webpack:build', 'responsive_images']);
   grunt.registerTask('build', ['default', 'exec:build']);
   grunt.registerTask('resize', ['responsive_images']);
 };
