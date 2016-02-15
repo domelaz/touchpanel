@@ -85,12 +85,12 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
           swipeBack = stopRight;
         }
         this.myPosition = nextPosition;
-        this.forceUpdate();
+        this.props.onSwipe(this.myPosition);
         break;
       case "touchend":
         if (!isNaN(swipeBack)) {
           this.myPosition = swipeBack;
-          this.forceUpdate();
+          this.props.onSwipe(this.myPosition);
         }
         break;
       case "touchcancel":
@@ -158,7 +158,7 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
   }
 
   render() {
-    let style = { 'transform': `translate3d(${this.myPosition}px, 0, 0)` };
+    const style = { 'transform': `translate3d(${this.props.pos}px, 0, 0)` };
 
     const touches = {
       onTouchStart:  this.handleTouch.bind(this),
