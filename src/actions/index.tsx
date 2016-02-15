@@ -21,3 +21,10 @@ export function resize(dimenstions) {
     dim: dimenstions
   }
 }
+
+export function moveFeed(pos) {
+  return {
+    type: c.FEED_POSITION,
+    pos: pos
+  }
+}

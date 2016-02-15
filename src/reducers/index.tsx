@@ -1,6 +1,13 @@
 import * as c from '../constants';
 
-export default function baggage(state = { active: 1, delta: 1, dim: null }, action) {
+const defaultState = {
+  active: 1,
+  delta: 1,
+  dim: null,
+  feedposition: 0,
+}
+
+export default function baggage(state = defaultState, action) {
   // Clone state
   let s = Object.assign({}, state);
 
@@ -19,6 +26,9 @@ export default function baggage(state = { active: 1, delta: 1, dim: null }, acti
       break;
     case c.RESIZE:
       s.dim = action.dim;
+      break;
+    case c.FEED_POSITION:
+      s.feedposition = action.pos;
       break;
     default:
       return state;
