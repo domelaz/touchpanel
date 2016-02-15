@@ -65,6 +65,7 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
     if (this.dimensions.fit) return;
 
     const { stopLeft, stopRight } = this.dimensions;
+    const pos = this.props.pos;
 
     const touch = e.changedTouches[0];
     switch (e.type) {
@@ -75,22 +76,20 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
       case "touchmove":
         const delta = touch.pageX - swipeDelta.x; 
         swipeDelta.x = touch.pageX;
-        let nextPosition = this.myPosition + delta;
+        let nextPosition = pos + delta;
         if (delta > 0 && nextPosition >= 0) {
-          nextPosition = this.myPosition + (delta / 5);
+          nextPosition = pos + (delta / 5);
           swipeBack = stopLeft;
         }
         if (delta < 0 && nextPosition < stopRight) {
-          nextPosition = this.myPosition + (delta / 5);
+          nextPosition = pos + (delta / 5);
           swipeBack = stopRight;
         }
-        this.myPosition = nextPosition;
-        this.props.onSwipe(this.myPosition);
+        this.props.onSwipe(nextPosition);
         break;
       case "touchend":
         if (!isNaN(swipeBack)) {
-          this.myPosition = swipeBack;
-          this.props.onSwipe(this.myPosition);
+          this.props.onSwipe(swipeBack);
         }
         break;
       case "touchcancel":
