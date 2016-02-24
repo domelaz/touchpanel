@@ -89,7 +89,7 @@ class App extends React.Component<IApp, {}> {
           delta = {delta}
           dim = {dim}
         />
-        <Content active = {active} delta = {delta} imagepath="img" />
+        <Content onSwipe = {actions.navClick} active = {active} delta = {delta} imagepath="img" />
       </div>
     );
   }

@@ -3,12 +3,16 @@
 'use strict';
 
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import * as ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+import * as Hammer from 'hammerjs';
 
 interface IContent {
   active?: number,
   delta?: number,
   imagepath?: string,
+  onSwipe?(any): void,
 }
 
 class SlideImage extends React.Component<IContent, {}> {
@@ -43,6 +47,22 @@ class SlideVideo extends React.Component<IContent, {}> {
 }
 
 export class Content extends React.Component<IContent, {}> {
+  componentDidMount() {
+    const el = ReactDOM.findDOMNode(this);
+    const mc = new Hammer.Manager(el as HTMLElement);
+    const Swipe = new Hammer.Swipe();
+    mc.add(Swipe);
+
+    const { active, onSwipe } = this.props;
+
+    mc.on('swipe', (event) => {
+      if (event.deltaX > 0 && active > 0) {
+        onSwipe('back');
+      } else {
+        onSwipe('forth');
+      }
+    });
+  }
   render() {
     const { active, delta, imagepath } = this.props;
     let direction = delta > 0 ? "content-left" : "content-right";
