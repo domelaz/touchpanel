@@ -33,7 +33,7 @@
     "load-grunt-config": "^0.19.1",
     "normalize.css": "^3.0.3",
     "ts-loader": "^0.8.0",
-    "typescript": "^1.7.5",
+    "typescript": "^1.8.2",
     "webpack": "^1.12.11",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-dev-server": "^1.14.1",
