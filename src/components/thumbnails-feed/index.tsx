@@ -16,7 +16,8 @@ interface IFeedProps {
   onFeedChange(any): void,
   feedposition: number,
   dim: any,
-  delta: number
+  delta: number,
+  playSound(): void,
 }
 
 /**
@@ -29,6 +30,16 @@ export class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
   render() {
     const { thumbnails, active, dim } = this.props;
 
+    const onNavClick = (direction: string) => {
+      this.props.playSound();
+      this.props.onNavClick(direction);
+    }
+
+    const onThumbnailClick = (id: number) => {
+      this.props.playSound();
+      this.props.onThumbnailClick(id);
+    }
+
     let thmSet = thumbnails.map(index =>
       <Thumbnail
         key={index}
@@ -40,15 +51,15 @@ export class ThumbnailsFeed extends React.Component<IFeedProps, {}> {
            if (index === active - 1) { return css_adj + '-left'; }
            if (index === active + 1) { return css_adj + '-right'; }
         })()}
-        onThumbnailClick={this.props.onThumbnailClick}
+        onThumbnailClick={onThumbnailClick}
       />
     );
 
     return (
       <div className="thumbnails-feed">
         <div className="nav-wrap">
-          <Navigate dir="forth" onNavClick={this.props.onNavClick} active={active} stop={thmSet.length} />
-          <Navigate dir="back" onNavClick={this.props.onNavClick} active={active} />
+          <Navigate dir="forth" onNavClick={onNavClick} active={active} stop={thmSet.length} />
+          <Navigate dir="back" onNavClick={onNavClick} active={active} />
         </div>
         <div className="thumbnails-set">
           <ThumbnailsWrapper orientation="wide" active={active} dim={dim} pos={this.props.feedposition} onSwipe={this.props.onFeedChange}>

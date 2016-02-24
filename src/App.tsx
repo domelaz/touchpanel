@@ -24,10 +24,41 @@ class App extends React.Component<IApp, {}> {
   private actions: any;
   private thumbs: Array<number>;
 
+  protected aCtx: AudioContext;
+  protected sndBuffer: AudioBuffer;
+
   constructor(props) {
     super(props);
     this.actions = bindActionCreators(Actions, props.dispatch);
     this.thumbs = [1,2,3,4,5,6,7,8,9,10]; // @todo from props
+    this.aCtx = new AudioContext();
+    this.getAudio('media/touch.ogg');
+  }
+
+  /**
+   * Load click sound
+   */
+  getAudio(path: string) {
+    var request = new XMLHttpRequest();
+    request.open('GET', path, true);
+    request.responseType = 'arraybuffer';
+    let self = this;
+    request.onload = () => {
+      self.aCtx.decodeAudioData(request.response, function(buffer) {
+        self.sndBuffer = buffer;
+      });
+    };
+    request.send();
+  }
+
+  playClick() {
+    if (typeof(this.sndBuffer) === 'undefined') return;
+
+    let source = this.aCtx.createBufferSource();
+    source.buffer = this.sndBuffer;
+    source.connect(this.aCtx.destination);
+
+    source.start(0);
   }
 
   /**
@@ -36,23 +67,6 @@ class App extends React.Component<IApp, {}> {
   componentDidMount() {
     window.addEventListener('resize', this.handleResize.bind(this));
     this.handleResize();
-    this.setBgAudio();
-  }
-
-  setBgAudio() {
-    let bgAudio = new AudioContext();
-    var request = new XMLHttpRequest();
-    request.open('GET', 'media/machinery.ogg', true);
-    request.responseType = 'arraybuffer';
-    request.onload = function() {
-      bgAudio.decodeAudioData(request.response, function(buffer) {
-        let source = bgAudio.createBufferSource();
-        source.buffer = buffer;
-        source.connect(bgAudio.destination);
-        source.start(0);
-      });
-    };
-    request.send();
   }
 
   /**
@@ -88,6 +102,7 @@ class App extends React.Component<IApp, {}> {
           active = {active}
           delta = {delta}
           dim = {dim}
+          playSound = {this.playClick.bind(this)}
         />
         <Content onSwipe = {actions.navClick} active = {active} delta = {delta} imagepath="img" />
       </div>
