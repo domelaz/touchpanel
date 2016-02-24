@@ -12,7 +12,9 @@ interface IContent {
   active?: number,
   delta?: number,
   imagepath?: string,
+  stop?: number,
   onSwipe?(any): void,
+  playSound?(): void,
 }
 
 class SlideImage extends React.Component<IContent, {}> {
@@ -53,13 +55,17 @@ export class Content extends React.Component<IContent, {}> {
     const Swipe = new Hammer.Swipe();
     mc.add(Swipe);
 
-    const { active, onSwipe } = this.props;
+    const self = this;
 
     mc.on('swipe', (event) => {
-      if (event.deltaX > 0 && active > 0) {
+      const { active, onSwipe } = self.props;
+      if (event.deltaX > 0 && active !== 1) {
         onSwipe('back');
-      } else {
+        this.props.playSound();
+      }
+      if (event.deltaX < 0 && active !== this.props.stop) {
         onSwipe('forth');
+        this.props.playSound();
       }
     });
   }

@@ -35,7 +35,7 @@ class App extends React.Component<IApp, {}> {
     // Init audio
     this.aCtx = new AudioContext();
     this.sndBuffer = new Map();
-    ['media/touch.ogg'].forEach(sound => {
+    ['media/touch.ogg', 'media/swipe.ogg'].forEach(sound => {
       this.getAudio(sound).then((buffer: AudioBuffer) => {
         this.sndBuffer.set(sound, buffer);
       });
@@ -113,7 +113,14 @@ class App extends React.Component<IApp, {}> {
           dim = {dim}
           playSound = {this.playClick.bind(this, 'media/touch.ogg')}
         />
-        <Content onSwipe = {actions.navClick} active = {active} delta = {delta} imagepath="img" />
+        <Content
+          active = {active}
+          delta = {delta}
+          stop = {this.thumbs.length}
+          imagepath="img"
+          onSwipe = {actions.navClick}
+          playSound = {this.playClick.bind(this, 'media/swipe.ogg')}
+        />
       </div>
     );
   }
