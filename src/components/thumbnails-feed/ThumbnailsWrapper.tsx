@@ -30,14 +30,14 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
   private orientation: string;
 
   handleResize() {
-    const el = ReactDOM.findDOMNode(this);
+    const el = ReactDOM.findDOMNode(this) as HTMLElement;
 
     const { orientation, dim } = this.props;
 
     const isWide = ['wide', 'long', 'landscape'].indexOf(orientation) !== -1;
     const dWrapper  = isWide ? el.clientWidth : el.clientHeight;
     const dParent   = isWide ? dim.width : dim.height;
-    const dControls = 100; // @todo css size of nav-wrap, move it from here
+    const dControls = isWide ? el.offsetLeft : el.offsetTop;
     const items = React.Children.count(this.props.children);
     const dContentItem = dWrapper / items;
 
@@ -46,7 +46,7 @@ export class ThumbnailsWrapper extends React.Component<IWrapperProps, {}> {
       fit: dWrapper <= dParent,
       item: dContentItem,
       stopLeft: 0,
-      stopRight: dParent - dWrapper - dControls,
+      stopRight: dParent - dWrapper - (dControls * 1.5),
     };
   }
 
