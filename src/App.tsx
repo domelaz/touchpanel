@@ -25,37 +25,46 @@ class App extends React.Component<IApp, {}> {
   private thumbs: Array<number>;
 
   protected aCtx: AudioContext;
-  protected sndBuffer: AudioBuffer;
+  protected sndBuffer: Map<string, AudioBuffer>;
 
   constructor(props) {
     super(props);
     this.actions = bindActionCreators(Actions, props.dispatch);
     this.thumbs = [1,2,3,4,5,6,7,8,9,10]; // @todo from props
+
+    // Init audio
     this.aCtx = new AudioContext();
-    this.getAudio('media/touch.ogg');
+    this.sndBuffer = new Map();
+    ['media/touch.ogg'].forEach(sound => {
+      this.getAudio(sound).then((buffer: AudioBuffer) => {
+        this.sndBuffer.set(sound, buffer);
+      });
+    });
   }
 
   /**
    * Load click sound
    */
   getAudio(path: string) {
-    var request = new XMLHttpRequest();
-    request.open('GET', path, true);
-    request.responseType = 'arraybuffer';
-    let self = this;
-    request.onload = () => {
-      self.aCtx.decodeAudioData(request.response, function(buffer) {
-        self.sndBuffer = buffer;
-      });
-    };
-    request.send();
+    return new Promise(resolve => {
+      var request = new XMLHttpRequest();
+      request.open('GET', path, true);
+      request.responseType = 'arraybuffer';
+      let self = this;
+      request.onload = () => {
+        self.aCtx.decodeAudioData(request.response, function(buffer) {
+          resolve(buffer);
+        });
+      };
+      request.send();
+    });
   }
 
-  playClick() {
+  playClick(path: string) {
     if (typeof(this.sndBuffer) === 'undefined') return;
 
     let source = this.aCtx.createBufferSource();
-    source.buffer = this.sndBuffer;
+    source.buffer = this.sndBuffer.get(path);
     source.connect(this.aCtx.destination);
 
     source.start(0);
@@ -102,7 +111,7 @@ class App extends React.Component<IApp, {}> {
           active = {active}
           delta = {delta}
           dim = {dim}
-          playSound = {this.playClick.bind(this)}
+          playSound = {this.playClick.bind(this, 'media/touch.ogg')}
         />
         <Content onSwipe = {actions.navClick} active = {active} delta = {delta} imagepath="img" />
       </div>
